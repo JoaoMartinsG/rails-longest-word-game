@@ -12,8 +12,9 @@ class GamesController < ApplicationController
     @word = params[:word]
     if !valid_word?(@word)
       @message = "Sorry but #{@word} doest not seem to be a valid English word..."
-    elsif !valid_word_in_grid?(@word)
+    elsif valid_word_in_grid?(@word)
       @message = "Sorry but #{@word.upcase} can't be build out of #{params[:letters]}"
+      raise
     else
       @message = "Congratulations! #{@word.upcase} is a valid English word!"
     end
